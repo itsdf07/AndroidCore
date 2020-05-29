@@ -1,0 +1,30 @@
+/**
+ * ext：扩展内容，固定格式（即只能用ext{}），并且是一个闭包的内容
+ */
+ext {
+    //当前是否为debug模式
+    isDebug = true
+
+    //junitVersion：自定义的属性，下同
+    junitVersion = "4.12"
+    designVersion = "26.+"
+    libALog = "2.0.2"
+    //appId：自定义的一个map映射集合，key-value
+    appId = [
+            "app"        : "com.itsdf07.core.app",
+    ]
+    android = [
+            compileSdkVersion: 29,
+            buildToolsVersion: "29.0.2",
+            minSdkVersion    : 19,
+            targetSdkVersion : 29,
+            versionCode      : 1,
+            versionName      : "1.0",
+    ]
+    dependencies = [
+            //shell语言语法：${变量名}
+            "junit"              : "junit:junit:${junitVersion}",
+    ]
+
+
+}
