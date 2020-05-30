@@ -24,6 +24,8 @@ ext {
     dependencies = [
             //shell语言语法：${变量名}
             "junit"              : "junit:junit:${junitVersion}",
+            "retrofit2"              : "com.squareup.retrofit2:retrofit:2.9.0",
+
     ]
 
 
