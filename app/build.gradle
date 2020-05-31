@@ -14,6 +14,13 @@ android {
         versionCode config.versionCode
         versionName config.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //解决编译时出现的异常：Invoke-customs are only supported starting with Android O (--min-api 26)
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+
     }
     buildTypes {
         release {
