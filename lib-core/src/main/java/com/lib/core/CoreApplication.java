@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.lib.core.log.ALog;
 import com.lib.core.log.ALogLevel;
+import com.lib.core.utils.AppGlobalUtils;
 
 /**
  * @Description:
@@ -17,6 +18,9 @@ public class CoreApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        //AppGlobalUtils.init的初始化优先级最高
+        AppGlobalUtils.init(this);
+        
         initALog();
         registerActivityLifecycleCallbacks(mCallbacks);
     }
