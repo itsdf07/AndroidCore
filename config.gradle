@@ -27,6 +27,7 @@ ext {
             "junit"             : "junit:junit:${junitVersion}",
             "retrofit2"         : "com.squareup.retrofit2:retrofit:${rtf2Version}",
             "retrofit2converter": "com.squareup.retrofit2:converter-scalars:${rtf2Version}",
+            "oklog"             : "com.squareup.okhttp3:logging-interceptor:3.11.0",
             "alog"              : "com.itsdf07:lib-alog:${libALog}"
     ]
 
