@@ -2,6 +2,7 @@ package com.itsdf07.core.app.ui;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +10,9 @@ import androidx.databinding.DataBindingUtil;
 
 import com.itsdf07.core.app.R;
 import com.itsdf07.core.app.databinding.ActivityLoginBinding;
+import com.itsdf07.core.app.mvvm.model.ILoginModel;
 import com.itsdf07.core.app.mvvm.model.User;
+import com.itsdf07.core.app.mvvm.model.impl.LoginModelImpl;
 
 /**
  * @Description:
@@ -20,19 +23,19 @@ import com.itsdf07.core.app.mvvm.model.User;
  */
 public class LoginActivity extends AppCompatActivity {
     User mUser = null;
-
-    Handler handler = new Handler();
+    ILoginModel mLoginModel = new LoginModelImpl();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityLoginBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
-        mUser = new User("itsdf07", "123456");
+        mUser = new User("Aso", "123456");
         binding.setUser(mUser);
 
-        handler.postDelayed(() -> {
-            mUser.setLoginId("Aso");
-            mUser.setPasswd("123");
-        }, 3000);
+        findViewById(R.id.login).setOnClickListener(v -> {
+            mUser.setLoginId("itsdf07");
+            mLoginModel.login(mUser);
+        });
+
     }
 }
