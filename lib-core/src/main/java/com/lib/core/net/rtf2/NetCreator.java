@@ -3,11 +3,10 @@ package com.lib.core.net.rtf2;
 import com.lib.core.net.ConfigKeys;
 import com.lib.core.net.NetInit;
 
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
@@ -39,6 +38,7 @@ public final class NetCreator {
         private static final int TIME_OUT = 30;
         private static final OkHttpClient OK_HTTP_CLIENT = new OkHttpClient.Builder()
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
+                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))//打印okhttp请求体日志
 //                .addInterceptor(((ArrayList<Interceptor>) NetInit.getConfiguration(ConfigKeys.INTERCEPTOR.name())).get(0))
                 .build();
     }

@@ -38,4 +38,5 @@ dependencies {
 //    api dep.alog //源码已集成到lib-core中：AndroidCore\lib-core\src\main\java\com\lib\core\log
     implementation dep.retrofit2 //'com.squareup.retrofit2:retrofit:2.9.0'
     implementation dep.retrofit2converter //'com.squareup.retrofit2:converter-scalars:2.9.0'
+    implementation dep.oklog
 }
