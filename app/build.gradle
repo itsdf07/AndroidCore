@@ -7,6 +7,11 @@ def dep = rootProject.ext.dependencies
 android {
     compileSdkVersion config.compileSdkVersion //map集合取值方式一
     buildToolsVersion config.buildToolsVersion
+
+    dataBinding {
+        enabled = true//启用DataBinding
+    }
+
     defaultConfig {
         applicationId appId["app"]//map集合取值方式二
         minSdkVersion config.minSdkVersion
