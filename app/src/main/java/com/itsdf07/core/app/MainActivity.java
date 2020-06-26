@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
-
-import com.itsdf07.lib.alog.ALog;
 import com.lib.core.TestLibCore;
+import com.lib.core.log.ALog;
 import com.lib.core.net.NetInit;
 import com.lib.core.net.callback.IError;
 import com.lib.core.net.callback.IFailure;
@@ -18,7 +16,6 @@ import com.lib.core.net.rtf2.NetClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import static android.content.ContentValues.TAG;
@@ -34,26 +31,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void requestNet(View view){
         String BASE_URL_LOCAL = "http://192.168.3.3:8080/";
-        NetInit.init(this)
-                .withApiHost(BASE_URL_LOCAL)
-                .configure();
+//        NetInit.init(this)
+//                .withApiHost(BASE_URL_LOCAL)
+//                .configure();
         //http://192.168.3.3:8080/api/test/test2GetWithParam
 
         NetClient.create()
                 .url("api/test/test2GetNoParam")
-                .success(new ISuccess() {
-                    @Override
-                    public void onSuccess(String response) {
-                        //responce:{"code":20000,"data":"这是一个无参数的Get请求方式API接口测试","msg":["Success","请求成功","请求成功"],"version":"当前版本信息：1.0.0403(dev)"}
-                        ALog.dTag(TAG, "response:%s", response);
-                    }
+                .success(response -> {
+                    //responce:{"code":20000,"data":"这是一个无参数的Get请求方式API接口测试","msg":["Success","请求成功","请求成功"],"version":"当前版本信息：1.0.0403(dev)"}
+                    ALog.dTag(TAG, "response:%s", response);
                 })
-                .error(new IError() {
-                    @Override
-                    public void onError(int code, String msg) {
-                        ALog.dTag(TAG, "code:%s,msg:%s", code, msg);
-                    }
-                }).build()
+                .error((code, msg) -> ALog.dTag(TAG, "code:%s,msg:%s", code, msg)).build()
                 .get();
         onNetGetWithParam();
         onNetPostWithParam();
@@ -74,12 +63,7 @@ public class MainActivity extends AppCompatActivity {
                         ALog.dTag(TAG, "response:%s", response);
                     }
                 })
-                .error(new IError() {
-                    @Override
-                    public void onError(int code, String msg) {
-                        ALog.dTag(TAG, "code:%s,msg:%s", code, msg);
-                    }
-                }).build()
+                .error((code, msg) -> ALog.dTag(TAG, "code:%s,msg:%s", code, msg)).build()
                 .get();
     }
 
@@ -128,13 +112,7 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure() {
                 ALog.dTag(TAG, "onFailure:%s");
             }
-        })
-                .error(new IError() {
-                    @Override
-                    public void onError(int code, String msg) {
-                        ALog.dTag(TAG, "code:%s,msg:%s", code, msg);
-                    }
-                }).build()
+        }).error((code, msg) -> ALog.dTag(TAG, "code:%s,msg:%s", code, msg)).build()
                 .postRaw();
     }
 }

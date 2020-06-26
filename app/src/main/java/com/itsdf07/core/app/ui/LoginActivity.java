@@ -1,7 +1,7 @@
 package com.itsdf07.core.app.ui;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -10,9 +10,9 @@ import androidx.databinding.DataBindingUtil;
 
 import com.itsdf07.core.app.R;
 import com.itsdf07.core.app.databinding.ActivityLoginBinding;
-import com.itsdf07.core.app.mvvm.model.ILoginModel;
+import com.itsdf07.core.app.mvvm.vm.ILoginModel;
 import com.itsdf07.core.app.mvvm.model.User;
-import com.itsdf07.core.app.mvvm.model.impl.LoginModelImpl;
+import com.itsdf07.core.app.mvvm.vm.impl.LoginModelImpl;
 
 /**
  * @Description:
@@ -21,21 +21,27 @@ import com.itsdf07.core.app.mvvm.model.impl.LoginModelImpl;
  * @Github https://github.com/itsdf07
  * @Date 2020/6/7
  */
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     User mUser = null;
     ILoginModel mLoginModel = new LoginModelImpl();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //设置此界面为竖屏
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         ActivityLoginBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
+
         mUser = new User("Aso", "123456");
         binding.setUser(mUser);
 
-        findViewById(R.id.login).setOnClickListener(v -> {
-            mUser.setLoginId("itsdf07");
-            mLoginModel.login(mUser);
-        });
+        binding.setOnClickListener(this);
+    }
 
+    @Override
+    public void onClick(View v) {
+        mUser.setLoginId("itsdf07");
+        mLoginModel.login(mUser);
     }
 }

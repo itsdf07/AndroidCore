@@ -1,6 +1,6 @@
-package com.itsdf07.core.app.mvvm.model.impl;
+package com.itsdf07.core.app.mvvm.vm.impl;
 
-import com.itsdf07.core.app.mvvm.model.ILoginModel;
+import com.itsdf07.core.app.mvvm.vm.ILoginModel;
 import com.itsdf07.core.app.mvvm.model.User;
 import com.lib.core.log.ALog;
 import com.lib.core.net.rtf2.NetClient;

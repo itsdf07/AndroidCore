@@ -7,6 +7,10 @@
         <variable
             name="user"
             type="com.itsdf07.core.app.mvvm.model.User" />
+
+        <variable
+            name="onClickListener"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <ScrollView
@@ -49,6 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:onClick="@{onClickListener}"
                 android:text="登录"
                 android:textStyle="bold" />
 

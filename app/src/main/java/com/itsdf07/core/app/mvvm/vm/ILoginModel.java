@@ -1,4 +1,6 @@
-package com.itsdf07.core.app.mvvm.model;
+package com.itsdf07.core.app.mvvm.vm;
+
+import com.itsdf07.core.app.mvvm.model.User;
 
 /**
  * @Description:
